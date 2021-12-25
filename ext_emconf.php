@@ -15,6 +15,7 @@ $EM_CONF[$_EXTKEY] = [
     ],
     'autoload' => [
         'classmap' => [
+            'Classes',
             'Resources/Private/PhpSpreadsheet',
         ],
     ],
