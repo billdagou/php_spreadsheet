@@ -7,20 +7,17 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class SpreadsheetViewHelper extends AbstractViewHelper {
-    const DEFAULT_WRITER = 'Xlsx';
+    const DEFAULT_WRITER = IOFactory::READER_XLSX;
 
-    /**
-     * @var string[]
-     */
-    protected static $writers = [
-        'Csv' => 'csv',
+    protected static array $writers = [
+        IOFactory::WRITER_CSV => 'csv',
         'Dompdf' => 'pdf',
-        'Html' => 'html',
+        IOFactory::WRITER_HTML => 'html',
         'Mpdf' => 'pdf',
-        'Ods' => 'ods',
+        IOFactory::WRITER_ODS => 'ods',
         'Tcpdf' => 'pdf',
-        'Xls' => 'xls',
-        'Xlsx' => 'xlsx',
+        IOFactory::READER_XLS => 'xls',
+        IOFactory::READER_XLSX => 'xlsx',
     ];
 
     public function initializeArguments() {

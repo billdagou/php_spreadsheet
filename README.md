@@ -11,7 +11,7 @@ First of all, you need to install [PhpSpreadsheet](https://github.com/PHPOffice/
     cd typo3conf/ext/php_spreadsheet/Resources/Private/PhpSpreadsheet/
     composer install --no-dev --prefer-dist
 
-After that, you can use the viewhelper to generate the Spreadsheet file and download it.
+After that, you can use the viewhelper to generate the Spreadsheet file and download it (**EXT:dagou_fluid required**).
 
     <df:http.download>
         <phpspreadsheet:http.download.spreadsheet>...</phpspreadsheet:http.download.spreadsheet>

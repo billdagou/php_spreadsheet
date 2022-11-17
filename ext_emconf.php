@@ -2,17 +2,19 @@
 $EM_CONF[$_EXTKEY] = [
     'title' => 'PhpSpreadsheet',
     'description' => 'PhpSpreadsheet, https://github.com/PHPOffice/PhpSpreadsheet',
+    'version' => '1.25.2',
     'category' => 'fe',
-    'author' => 'Bill.Dagou',
-    'author_email' => 'billdagou@gmail.com',
-    'version' => '1.20.0',
-    'state' => 'stable',
     'constraints' => [
         'depends' => [
-            'dagou_fluid' => '10.4.0-10.4.99',
-            'typo3' => '10.4.0-10.4.99',
+            'typo3' => '11.5.0-11.5.99',
+        ],
+        'suggests' => [
+            'dagou_fluid' => '',
         ],
     ],
+    'state' => 'stable',
+    'author' => 'Bill.Dagou',
+    'author_email' => 'billdagou@gmail.com',
     'autoload' => [
         'classmap' => [
             'Classes',
