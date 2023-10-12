@@ -11,13 +11,21 @@ class SpreadsheetViewHelper extends AbstractViewHelper {
 
     protected static array $writers = [
         IOFactory::WRITER_CSV => 'csv',
-        'Dompdf' => 'pdf',
         IOFactory::WRITER_HTML => 'html',
-        'Mpdf' => 'pdf',
         IOFactory::WRITER_ODS => 'ods',
-        'Tcpdf' => 'pdf',
         IOFactory::READER_XLS => 'xls',
         IOFactory::READER_XLSX => 'xlsx',
+        'Dompdf' => 'pdf',
+        'Mpdf' => 'pdf',
+        'Tcpdf' => 'pdf',
+    ];
+    protected static array $mimeTypes = [
+        'csv' => 'text/csv',
+        'html' => 'text/html',
+        'ods' => 'application/vnd.oasis.opendocument.spreadsheet',
+        'pdf' => 'application/pdf',
+        'xls' => 'application/vnd.ms-excel',
+        'xlsx' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
     ];
 
     public function initializeArguments() {
@@ -38,6 +46,7 @@ class SpreadsheetViewHelper extends AbstractViewHelper {
             ($this->viewHelperVariableContainer->get(DownloadViewHelper::class, 'filename') ?: 'Document')
                 .'.'.self::$writers[$writerType]
         );
+        $this->viewHelperVariableContainer->add(DownloadViewHelper::class, 'mimeType', self::$mimeTypes[self::$writers[$writerType]]);
 
         $tempFilename = tempnam(sys_get_temp_dir(), 'PhpSpreadsheet');
 
