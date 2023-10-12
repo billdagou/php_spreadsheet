@@ -38,19 +38,19 @@ class SpreadsheetViewHelper extends AbstractViewHelper {
      * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
      */
     public function render(): string {
-        $writerType = $this->getWriterType();
+        $writerName = $this->getWriterName();
 
         $this->viewHelperVariableContainer->add(
             DownloadViewHelper::class,
             'filename',
             ($this->viewHelperVariableContainer->get(DownloadViewHelper::class, 'filename') ?: 'Document')
-                .'.'.self::$writers[$writerType]
+                .'.'.self::$writers[$writerName]
         );
-        $this->viewHelperVariableContainer->add(DownloadViewHelper::class, 'mimeType', self::$mimeTypes[self::$writers[$writerType]]);
+        $this->viewHelperVariableContainer->add(DownloadViewHelper::class, 'mimeType', self::$mimeTypes[self::$writers[$writerName]]);
 
         $tempFilename = tempnam(sys_get_temp_dir(), 'PhpSpreadsheet');
 
-        IOFactory::createWriter($this->arguments['spreadsheet'] ?? $this->renderChildren(), $writerType)
+        IOFactory::createWriter($this->arguments['spreadsheet'] ?? $this->renderChildren(), $writerName)
             ->save($tempFilename);
 
         $content = file_get_contents($tempFilename);
@@ -63,7 +63,7 @@ class SpreadsheetViewHelper extends AbstractViewHelper {
     /**
      * @return string
      */
-    protected function getWriterType(): string {
+    protected function getWriterName(): string {
         return in_array($this->arguments['writer'], array_keys(self::$writers)) ? $this->arguments['writer'] : self::DEFAULT_WRITER;
     }
 }

@@ -255,33 +255,6 @@ class Sample
         $this->log(sprintf('%s() Result is ', $functionName) . $worksheet->getCell($formulaCell)->getCalculatedValue());
     }
 
-    public function titles(string $category, string $functionName, ?string $description = null): void
-    {
-        $this->log(sprintf('%s Functions:', $category));
-        $description === null
-            ? $this->log(sprintf('Function: %s()', rtrim($functionName, '()')))
-            : $this->log(sprintf('Function: %s() - %s.', rtrim($functionName, '()'), rtrim($description, '.')));
-    }
-
-    public function displayGrid(array $matrix): void
-    {
-        $renderer = new TextGrid($matrix, $this->isCli());
-        echo $renderer->render();
-    }
-
-    public function logCalculationResult(
-        Worksheet $worksheet,
-        string $functionName,
-        string $formulaCell,
-        ?string $descriptionCell = null
-    ): void {
-        if ($descriptionCell !== null) {
-            $this->log($worksheet->getCell($descriptionCell)->getValue());
-        }
-        $this->log($worksheet->getCell($formulaCell)->getValue());
-        $this->log(sprintf('%s() Result is ', $functionName) . $worksheet->getCell($formulaCell)->getCalculatedValue());
-    }
-
     /**
      * Log ending notes.
      */
